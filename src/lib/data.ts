@@ -63,7 +63,7 @@ export const businesses: Business[] = categories.flatMap((c, ci) =>
   [0, 1, 2, 3].map((k) => {
     const s = ci * 10 + k + 1;
     const name = `${prefixes[(ci + k * 3) % prefixes.length]} ${suffixes[c.slug]}`;
-    const area = areas[(ci * 3 + k * 5) % areas.length];
+    const area = areas[(ci * 3 + k * 5) % areas.length]!;
     return {
       slug: `${name}-${area}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
       name, category: c.slug, area,
@@ -77,8 +77,8 @@ export const businesses: Business[] = categories.flatMap((c, ci) =>
       whatsapp: rand(s + 6) > 0.15,
       phone: `98${String(Math.floor(10000000 + rand(s + 7) * 89999999))}`,
       distanceKm: Math.round((0.5 + rand(s + 8) * 9) * 10) / 10,
-      priceFrom: [149, 199, 249, 299, 399, 499][Math.floor(rand(s + 9) * 6)],
-      services: [c.name, ...c.keywords.map((w) => w[0].toUpperCase() + w.slice(1))],
+      priceFrom: [149, 199, 249, 299, 399, 499][Math.floor(rand(s + 9) * 6)]!,
+      services: [c.name, ...c.keywords.map((w) => w[0]!.toUpperCase() + w.slice(1))],
       hours: "9:00 AM – 8:00 PM",
       about: `${name} is a trusted ${c.name.toLowerCase()} provider based in ${area}, Ahilyanagar, serving homes and businesses across the city.`,
     };
@@ -94,8 +94,8 @@ export function searchBusinesses(q: string, area?: string) {
   let inArea = area;
   const m = query.match(/(.*)\s+in\s+(.+)$/);
   if (m) {
-    const found = areas.find((a) => a.toLowerCase() === m[2].trim());
-    if (found) { query = m[1].trim(); inArea = found; }
+    const found = areas.find((a) => a.toLowerCase() === m[2]!.trim());
+    if (found) { query = m[1]!.trim(); inArea = found; }
   }
   query = query.replace(/near me/, "").trim();
   return businesses.filter((b) => {
@@ -112,7 +112,7 @@ export function suggestions(q: string) {
   if (!t) return [];
   const out = new Set<string>();
   categories.forEach((c) => {
-    [c.name, ...c.keywords].forEach((w) => w.toLowerCase().includes(t) && out.add(w[0].toUpperCase() + w.slice(1)));
+    [c.name, ...c.keywords].forEach((w) => w.toLowerCase().includes(t) && out.add(w[0]!.toUpperCase() + w.slice(1)));
   });
   businesses.forEach((b) => b.name.toLowerCase().includes(t) && out.add(b.name));
   const first = [...out][0];

@@ -4,9 +4,9 @@ import { SearchBar } from "@/components/SearchBar";
 import { searchBusinesses } from "@/lib/data";
 
 export const Route = createFileRoute("/search")({
-  validateSearch: (s: Record<string, unknown>): { q?: string; area?: string } => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    area: typeof s.area === "string" ? s.area : undefined,
+  validateSearch: (s: Record<string, unknown>): { q?: string | undefined; area?: string | undefined } => ({
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    area: typeof s["area"] === "string" ? s["area"] : undefined,
   }),
   head: () => ({
     meta: [

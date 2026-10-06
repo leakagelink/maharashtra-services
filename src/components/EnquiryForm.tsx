@@ -18,7 +18,7 @@ export function EnquiryForm({ b }: { b: Business }) {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const p = schema.safeParse(form);
-    if (!p.success) return setErr(p.error.issues[0].message);
+    if (!p.success) return setErr(p.error.issues[0]?.message ?? "Check the form");
     setErr(""); setStatus("sending");
     const { error } = await supabase.from("enquiries").insert({
       business_slug: b.slug, business_name: b.name, kind: p.data.kind, name: p.data.name,
