@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ResultsList } from "@/components/ResultsList";
 import { SearchBar } from "@/components/SearchBar";
 import { businesses, getCategory } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/services/$slug")({
     if (!loaderData) return { meta: [{ title: "Not found" }, { name: "robots", content: "noindex" }] };
     const t = `${loaderData.name} in Ahilyanagar — QuickDial`;
     const d = `Compare verified ${loaderData.name.toLowerCase()} providers in Ahilyanagar. Ratings, reviews, call and WhatsApp.`;
-    return { meta: [{ title: t }, { name: "description", content: d }, { property: "og:title", content: t }, { property: "og:description", content: d }] };
+    return { meta: [...brandShareMeta, { title: t }, { name: "description", content: d }, { property: "og:title", content: t }, { property: "og:description", content: d }] };
   },
   component: CategoryPage,
 });

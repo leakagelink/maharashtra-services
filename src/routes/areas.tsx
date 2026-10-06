@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { areas, businesses } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/areas")({
   head: () => ({
     meta: [
+      ...brandShareMeta,
       { title: "Areas in Ahilyanagar — QuickDial" },
       { name: "description", content: "Find local services by neighbourhood: Savedi, Bhingar, Kedgaon, Tarakpur and more." },
       { property: "og:title", content: "Areas in Ahilyanagar — QuickDial" },
