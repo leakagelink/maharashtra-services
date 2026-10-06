@@ -3,6 +3,7 @@ import { BadgeCheck, Clock, MapPin, MessageCircle, Phone, Star } from "lucide-re
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { waLink } from "@/components/BusinessCard";
 import { getBusiness, getCategory } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/business/$slug")({
   loader: ({ params }) => {
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/business/$slug")({
     if (!loaderData) return { meta: [{ title: "Not found" }, { name: "robots", content: "noindex" }] };
     const t = `${loaderData.name}, ${loaderData.area} — QuickDial`;
     const d = `Contact ${loaderData.name} in ${loaderData.area}, Ahilyanagar. Call, WhatsApp, get a quote or book.`;
-    return { meta: [{ title: t }, { name: "description", content: d }, { property: "og:title", content: t }, { property: "og:description", content: d }] };
+    return { meta: [...brandShareMeta, { title: t }, { name: "description", content: d }, { property: "og:title", content: t }, { property: "og:description", content: d }] };
   },
   component: BusinessPage,
 });

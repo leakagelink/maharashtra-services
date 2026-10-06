@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { categories, countFor } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
+      ...brandShareMeta,
       { title: "All Services in Ahilyanagar — QuickDial" },
       { name: "description", content: "Browse 23 local service categories in Ahilyanagar, from electricians to photographers." },
       { property: "og:title", content: "All Services in Ahilyanagar — QuickDial" },

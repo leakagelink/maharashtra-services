@@ -1,16 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Home, LayoutGrid, Search, MessageSquare, Store } from "lucide-react";
 import type { ReactNode } from "react";
+import { brandLogoUrl } from "@/lib/brand";
 
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground font-extrabold relative">
-        Q<span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-accent-gradient" />
-      </span>
-      <span className="text-xl font-extrabold tracking-tight text-primary">
-        Quick<span className="text-brand-red">Dial</span>
-      </span>
+    <Link to="/" className="flex shrink-0 items-center" aria-label="QuickDial Ahilyanagar home">
+      <img src={brandLogoUrl} alt="QuickDial Ahilyanagar" width={1065} height={630} className="h-12 w-auto object-contain" />
     </Link>
   );
 }

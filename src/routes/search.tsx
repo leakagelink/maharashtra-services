@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ResultsList } from "@/components/ResultsList";
 import { SearchBar } from "@/components/SearchBar";
 import { searchBusinesses } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/search")({
   validateSearch: (s: Record<string, unknown>): { q?: string | undefined; area?: string | undefined } => ({
@@ -10,6 +11,7 @@ export const Route = createFileRoute("/search")({
   }),
   head: () => ({
     meta: [
+      ...brandShareMeta,
       { title: "Search Local Services — QuickDial" },
       { name: "description", content: "Search businesses, services and areas across Ahilyanagar." },
       { property: "og:title", content: "Search Local Services — QuickDial" },

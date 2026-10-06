@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BarChart3, MessageSquare, PhoneIncoming, Star } from "lucide-react";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/list-your-business")({
   head: () => ({
     meta: [
+      ...brandShareMeta,
       { title: "List Your Business Free — QuickDial Ahilyanagar" },
       { name: "description", content: "Get your Ahilyanagar business on QuickDial and receive calls, WhatsApp messages and enquiries from local customers." },
       { property: "og:title", content: "List Your Business Free — QuickDial" },

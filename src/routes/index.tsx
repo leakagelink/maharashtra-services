@@ -3,10 +3,12 @@ import { BadgeCheck, Phone, ShieldCheck, Zap } from "lucide-react";
 import { SearchBar } from "@/components/SearchBar";
 import { BusinessCard } from "@/components/BusinessCard";
 import { businesses, categories, countFor } from "@/lib/data";
+import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      ...brandShareMeta,
       { title: "QuickDial — Find Trusted Local Services in Ahilyanagar" },
       { name: "description", content: "Electricians, plumbers, AC technicians, cleaners, packers & movers and more in Ahilyanagar. Call, WhatsApp or enquire in seconds." },
       { property: "og:title", content: "QuickDial — Find Trusted Local Services in Ahilyanagar" },

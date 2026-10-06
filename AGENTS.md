@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared logo asset references and social-share metadata in `src/lib/brand.ts`; every content route includes the shared metadata to keep branding consistent without global image-tag inheritance.
