@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AreasRouteImport } from './routes/areas'
+import { Route as BusinessesRouteImport } from './routes/businesses'
+import { Route as ListYourBusinessRouteImport } from './routes/list-your-business'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AreasRoute = AreasRouteImport.update({
+  id: '/areas',
+  path: '/areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessesRoute = BusinessesRouteImport.update({
+  id: '/businesses',
+  path: '/businesses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListYourBusinessRoute = ListYourBusinessRouteImport.update({
+  id: '/list-your-business',
+  path: '/list-your-business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessSlugRoute = BusinessSlugRouteImport.update({
+  id: '/business/$slug',
+  path: '/business/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/businesses': typeof BusinessesRoute
+  '/list-your-business': typeof ListYourBusinessRoute
+  '/search': typeof SearchRoute
+  '/business/$slug': typeof BusinessSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/businesses': typeof BusinessesRoute
+  '/list-your-business': typeof ListYourBusinessRoute
+  '/search': typeof SearchRoute
+  '/business/$slug': typeof BusinessSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/businesses': typeof BusinessesRoute
+  '/list-your-business': typeof ListYourBusinessRoute
+  '/search': typeof SearchRoute
+  '/business/$slug': typeof BusinessSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/areas'
+    | '/businesses'
+    | '/list-your-business'
+    | '/search'
+    | '/business/$slug'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/areas'
+    | '/businesses'
+    | '/list-your-business'
+    | '/search'
+    | '/business/$slug'
+    | '/services/$slug'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/areas'
+    | '/businesses'
+    | '/list-your-business'
+    | '/search'
+    | '/business/$slug'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AreasRoute: typeof AreasRoute
+  BusinessesRoute: typeof BusinessesRoute
+  ListYourBusinessRoute: typeof ListYourBusinessRoute
+  SearchRoute: typeof SearchRoute
+  BusinessSlugRoute: typeof BusinessSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/areas': {
+      id: '/areas'
+      path: '/areas'
+      fullPath: '/areas'
+      preLoaderRoute: typeof AreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/businesses': {
+      id: '/businesses'
+      path: '/businesses'
+      fullPath: '/businesses'
+      preLoaderRoute: typeof BusinessesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list-your-business': {
+      id: '/list-your-business'
+      path: '/list-your-business'
+      fullPath: '/list-your-business'
+      preLoaderRoute: typeof ListYourBusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/$slug': {
+      id: '/business/$slug'
+      path: '/business/$slug'
+      fullPath: '/business/$slug'
+      preLoaderRoute: typeof BusinessSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AreasRoute: AreasRoute,
+  BusinessesRoute: BusinessesRoute,
+  ListYourBusinessRoute: ListYourBusinessRoute,
+  SearchRoute: SearchRoute,
+  BusinessSlugRoute: BusinessSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
