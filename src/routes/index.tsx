@@ -73,7 +73,7 @@ function Index() {
             const c = categories.find((x) => x.slug === s)!;
             return (
               <Link key={s} to="/services/$slug" params={{ slug: s }} className="flex items-center justify-between rounded-2xl border bg-card p-5 hover:border-primary">
-                <div><p className="font-bold">{c.name}s in Ahilyanagar</p><p className="text-sm text-muted-foreground">{countFor(s)} trusted providers</p></div>
+                <div><p className="font-bold">{c.name} in Ahilyanagar</p><p className="text-sm text-muted-foreground">{countFor(s)} trusted providers</p></div>
                 <c.icon className="h-8 w-8 text-brand-orange" />
               </Link>
             );
