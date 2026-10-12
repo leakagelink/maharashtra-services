@@ -20,12 +20,12 @@ export function SearchBar({ initialQ = "", initialArea = "" }: { initialQ?: stri
           {areas.map((a) => <option key={a}>{a}</option>)}
         </select>
       </label>
-      <div className="relative flex min-w-0 items-center gap-2 px-3">
+      <div className="relative grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 px-3">
         <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
         <input aria-label="Search services" value={q} onChange={(e) => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder="Search for a service" className="h-12 min-w-0 w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground" />
         {open && sugg.length > 0 && (
-          <ul className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border bg-popover text-popover-foreground shadow-card">
+          <ul className="col-span-2 max-h-60 overflow-y-auto rounded-xl border bg-popover text-popover-foreground shadow-card md:absolute md:left-0 md:right-0 md:top-full md:z-50 md:mt-2 md:w-full">
             {sugg.map((s) => (
               <li key={s}><Button variant="ghost" type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => { setQ(s); go(s); }} className="h-auto min-h-11 w-full justify-start whitespace-normal rounded-none px-4 py-2.5 text-left"><Search className="h-4 w-4 text-muted-foreground" />{s}</Button></li>
             ))}
