@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { BadgeCheck, MapPin, MessageCircle, Phone, Star } from "lucide-react";
-import { getCategory, type Business } from "@/lib/data";
+import { categoryOf, type Business } from "@/lib/data";
 
 export const waLink = (b: Business) =>
-  `https://wa.me/91${b.phone}?text=${encodeURIComponent(`Hi ${b.name}, I found you on QuickDial and need ${getCategory(b.category)?.name}.`)}`;
+  `https://wa.me/91${b.phone}?text=${encodeURIComponent(`Hi ${b.name}, I found you on QuickDial and need ${categoryOf(b.category).name}.`)}`;
 
 export function BusinessCard({ b }: { b: Business }) {
-  const c = getCategory(b.category)!;
+  const c = categoryOf(b.category);
   const Icon = c.icon;
   return (
     <div className="flex flex-col gap-4 rounded-2xl border bg-card p-4 shadow-card sm:flex-row">

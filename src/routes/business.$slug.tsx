@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { BadgeCheck, Clock, MapPin, MessageCircle, Phone, Star } from "lucide-react";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { waLink } from "@/components/BusinessCard";
-import { getBusiness, getCategory } from "@/lib/data";
+import { getBusiness, categoryOf } from "@/lib/data";
 import { brandShareMeta } from "@/lib/brand";
 
 export const Route = createFileRoute("/business/$slug")({
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/business/$slug")({
 
 function BusinessPage() {
   const b = getBusiness(Route.useLoaderData().slug)!;
-  const c = getCategory(b.category)!;
+  const c = categoryOf(b.category);
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <Link to="/services/$slug" params={{ slug: c.slug }} className="text-sm font-semibold text-primary">← {c.name} in Ahilyanagar</Link>
