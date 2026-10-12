@@ -1,8 +1,18 @@
 import {
   Zap, Wrench, Sparkles, Snowflake, Truck, PaintRoller, Hammer, Bug, Refrigerator, Droplets,
   Cctv, Umbrella, HardHat, Scissors, Sofa, Sun, Monitor, Smartphone, Car, PartyPopper, Camera,
-  GraduationCap, Shirt, type LucideIcon,
+  GraduationCap, Shirt, Plane, Hotel, UtensilsCrossed, Cog, Stethoscope, Hospital, Pill, FlaskConical,
+  Building2, CarFront, Dumbbell, Scale, Calculator, Ruler, PawPrint, Store, type LucideIcon,
 } from "lucide-react";
+
+export const iconMap: Record<string, LucideIcon> = {
+  Zap, Wrench, Sparkles, Snowflake, Truck, PaintRoller, Hammer, Bug, Refrigerator, Droplets, Cctv, Umbrella,
+  HardHat, Scissors, Sofa, Sun, Monitor, Smartphone, Car, PartyPopper, Camera, GraduationCap, Shirt, Plane,
+  Hotel, UtensilsCrossed, Cog, Stethoscope, Hospital, Pill, FlaskConical, Building2, CarFront, Dumbbell,
+  Scale, Calculator, Ruler, PawPrint, Store,
+};
+export const iconNames = Object.keys(iconMap);
+export type CategoryRow = { slug: string; name: string; icon: string; keywords: string[] };
 
 export type Category = { slug: string; name: string; icon: LucideIcon; keywords: string[] };
 
@@ -85,7 +95,15 @@ export const businesses: Business[] = categories.flatMap((c, ci) =>
   }),
 );
 
-export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);
+/** Replace the live category list (in place) with rows managed from the admin panel. */
+export function setCategoryList(rows: CategoryRow[] | null | undefined) {
+  if (!rows || rows.length === 0) return;
+  categories.splice(0, categories.length, ...rows.map((r) => ({ slug: r.slug, name: r.name, icon: iconMap[r.icon] ?? Store, keywords: r.keywords ?? [] })));
+}
+
+export const getCategory = (slug: string): Category | undefined => categories.find((c) => c.slug === slug);
+const fallbackCategory = (slug: string): Category => ({ slug, name: slug.replace(/-/g, " "), icon: Store, keywords: [] });
+export const categoryOf = (slug: string): Category => getCategory(slug) ?? fallbackCategory(slug);
 export const getBusiness = (slug: string) => businesses.find((b) => b.slug === slug);
 export const countFor = (slug: string) => businesses.filter((b) => b.category === slug).length;
 
@@ -101,7 +119,7 @@ export function searchBusinesses(q: string, area?: string) {
   return businesses.filter((b) => {
     if (inArea && b.area !== inArea) return false;
     if (!query) return true;
-    const c = getCategory(b.category)!;
+    const c = categoryOf(b.category);
     const hay = [b.name, c.name, b.area, ...c.keywords, ...b.services].join(" ").toLowerCase();
     return query.split(/\s+/).every((w) => hay.includes(w));
   });

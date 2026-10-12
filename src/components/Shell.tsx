@@ -44,7 +44,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <div><h4 className="mb-3 font-bold">Explore</h4><ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/services">All services</Link></li><li><Link to="/businesses">Businesses</Link></li><li><Link to="/areas">Areas</Link></li></ul></div>
           <div><h4 className="mb-3 font-bold">For businesses</h4><ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/list-your-business">List your business — free</Link></li></ul></div>
+            <li><Link to="/list-your-business">List your business — free</Link></li><li><Link to="/admin">Admin panel</Link></li></ul></div>
           <div><h4 className="mb-3 font-bold">Popular</h4><ul className="space-y-2 text-sm text-muted-foreground">
             {["electrician", "plumber", "ac-service", "packers-movers"].map((s) => (
               <li key={s}><Link to="/services/$slug" params={{ slug: s }} className="capitalize">{s.replace("-", " ")} in Ahilyanagar</Link></li>))}</ul></div>

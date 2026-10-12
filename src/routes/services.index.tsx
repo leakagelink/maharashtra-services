@@ -7,7 +7,7 @@ export const Route = createFileRoute("/services/")({
     meta: [
       ...brandShareMeta,
       { title: "All Services in Ahilyanagar — QuickDial" },
-      { name: "description", content: "Browse 23 local service categories in Ahilyanagar, from electricians to photographers." },
+      { name: "description", content: "Browse local service categories in Ahilyanagar, from electricians to photographers." },
       { property: "og:title", content: "All Services in Ahilyanagar — QuickDial" },
       { property: "og:description", content: "Browse every local service category on QuickDial." },
     ],

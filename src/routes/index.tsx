@@ -72,7 +72,8 @@ function Index() {
         <h2 className="mb-6 text-2xl font-extrabold md:text-3xl">Popular in Ahilyanagar</h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {["electrician", "plumber", "ac-service", "home-cleaning", "packers-movers", "carpenter"].map((s) => {
-            const c = categories.find((x) => x.slug === s)!;
+            const c = categories.find((x) => x.slug === s);
+            if (!c) return null;
             return (
               <Link key={s} to="/services/$slug" params={{ slug: s }} className="flex items-center justify-between rounded-2xl border bg-card p-5 hover:border-primary">
                 <div><p className="font-bold">{c.name} in Ahilyanagar</p><p className="text-sm text-muted-foreground">{countFor(s)} trusted providers</p></div>
