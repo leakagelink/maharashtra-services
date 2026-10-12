@@ -2,6 +2,13 @@ import logoAsset from "@/assets/quickdial-brand-logo.jpg.asset.json";
 import shareAsset from "@/assets/quickdial-share.jpg.asset.json";
 
 export const brandLogoUrl = logoAsset.url;
+
+export const customerCare = {
+  display: "+91 97557 27474",
+  tel: "+919755727474",
+  whatsapp: "https://wa.me/919755727474",
+} as const;
+
 const shareImageUrl = `https://id-preview--d3806124-682c-4cdc-9c3c-859bb3d7960a.lovable.app${shareAsset.url}`;
 
 export const brandShareMeta = [

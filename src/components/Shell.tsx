@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Home, LayoutGrid, Search, MessageSquare, Store } from "lucide-react";
+import { Home, LayoutGrid, MessageSquare, Phone, Search, Store } from "lucide-react";
 import type { ReactNode } from "react";
-import { brandLogoUrl } from "@/lib/brand";
+import { brandLogoUrl, customerCare } from "@/lib/brand";
+
 
 export function Logo() {
   return (
@@ -22,7 +23,17 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell min-h-dvh">
       <header className="app-header sticky top-0 z-40 border-b bg-card/95 backdrop-blur">
+        <div className="border-b bg-secondary/60">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-1.5 text-xs font-semibold">
+            <p className="min-w-0 text-muted-foreground">Need help finding the right professional?</p>
+            <div className="flex min-w-0 items-center gap-4">
+              <a href={`tel:${customerCare.tel}`} className="inline-flex min-h-8 items-center gap-1.5 font-bold text-primary"><Phone className="h-3.5 w-3.5 shrink-0" />Customer care {customerCare.display}</a>
+              <a href={customerCare.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center gap-1.5 font-bold text-success">Chat on WhatsApp</a>
+            </div>
+          </div>
+        </div>
         <div className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 md:flex md:justify-between md:gap-4">
+
           <Logo />
           <nav className="hidden items-center gap-1 md:flex">
             {nav.map((n) => (
@@ -40,7 +51,14 @@ export function Shell({ children }: { children: ReactNode }) {
       <main className="min-w-0">{children}</main>
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-4">
-          <div className="space-y-3"><Logo /><p className="text-sm text-muted-foreground">Find Local Services. Call. Connect. Trusted professionals across Ahilyanagar (Ahmednagar), Maharashtra.</p></div>
+          <div className="space-y-3"><Logo /><p className="text-sm text-muted-foreground">Find Local Services. Call. Connect. Trusted professionals across Ahilyanagar (Ahmednagar), Maharashtra.</p>
+            <p className="text-sm font-semibold">Customer care</p>
+            <div className="flex flex-wrap gap-2">
+              <a href={`tel:${customerCare.tel}`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-secondary px-3 py-2 text-sm font-bold text-primary"><Phone className="h-4 w-4 shrink-0" />{customerCare.display}</a>
+              <a href={customerCare.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-success px-3 py-2 text-sm font-bold text-success">WhatsApp</a>
+            </div>
+          </div>
+
           <div><h4 className="mb-3 font-bold">Explore</h4><ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/services">All services</Link></li><li><Link to="/businesses">Businesses</Link></li><li><Link to="/areas">Areas</Link></li></ul></div>
           <div><h4 className="mb-3 font-bold">For businesses</h4><ul className="space-y-2 text-sm text-muted-foreground">
@@ -49,7 +67,7 @@ export function Shell({ children }: { children: ReactNode }) {
             {["electrician", "plumber", "ac-service", "packers-movers"].map((s) => (
               <li key={s}><Link to="/services/$slug" params={{ slug: s }} className="capitalize">{s.replace("-", " ")} in Ahilyanagar</Link></li>))}</ul></div>
         </div>
-        <p className="border-t py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} QuickDial · Ahilyanagar</p>
+        <p className="border-t py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} QuickDial · Ahilyanagar · Customer care <a href={`tel:${customerCare.tel}`} className="font-bold text-primary">{customerCare.display}</a></p>
       </footer>
       <nav aria-label="Mobile navigation" className="app-bottom-nav fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card md:hidden">
         {[
