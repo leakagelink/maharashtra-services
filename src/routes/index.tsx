@@ -25,17 +25,17 @@ function Index() {
   return (
     <>
       <section className="bg-hero text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-12 md:pb-24 md:pt-20">
+        <div className="mx-auto max-w-7xl px-4 pb-8 pt-6 sm:pb-16 sm:pt-12 md:pb-24 md:pt-20">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-bold uppercase tracking-wider">
             <span className="h-2 w-2 rounded-full bg-brand-orange" />Ahilyanagar · Maharashtra
           </p>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+          <h1 className="max-w-3xl break-words text-3xl font-extrabold leading-tight sm:text-4xl md:text-6xl">
             Find trusted local services in <span className="text-brand-orange">Ahilyanagar</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-primary-foreground/80">
+          <p className="mt-3 max-w-2xl text-base text-primary-foreground/80 sm:mt-4 sm:text-lg">
             Electricians, plumbers, AC technicians, cleaners, packers & movers and more — find local professionals near you.
           </p>
-          <div className="mt-8 max-w-4xl text-foreground"><SearchBar /></div>
+          <div className="mt-5 max-w-4xl text-foreground sm:mt-8"><SearchBar /></div>
           <div className="mt-5 flex flex-wrap gap-2">
             {popular.map((p) => (
               <Link key={p} to="/search" search={{ q: p }} className="rounded-full border border-primary-foreground/25 px-3 py-1.5 text-sm font-semibold hover:bg-primary-foreground/10">{p}</Link>
@@ -44,24 +44,24 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto -mt-8 grid max-w-7xl grid-cols-1 gap-3 px-4 sm:grid-cols-3">
+      <section className="relative mx-auto mt-4 grid max-w-7xl grid-cols-1 gap-3 px-4 sm:-mt-8 sm:grid-cols-3">
         {[{ i: BadgeCheck, t: "Verified businesses", d: "Profiles checked by our team" }, { i: Phone, t: "Direct contact", d: "Call or WhatsApp — no middlemen" }, { i: ShieldCheck, t: "Real reviews", d: "From customers in your city" }].map((x) => (
           <div key={x.t} className="flex items-center gap-3 rounded-2xl border bg-card p-4 shadow-card">
-            <x.i className="h-8 w-8 text-brand-red" /><div><p className="font-bold">{x.t}</p><p className="text-sm text-muted-foreground">{x.d}</p></div>
+            <x.i className="h-8 w-8 shrink-0 text-brand-red" /><div className="min-w-0"><p className="font-bold">{x.t}</p><p className="text-sm text-muted-foreground">{x.d}</p></div>
           </div>
         ))}
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-14">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-2xl font-extrabold md:text-3xl">Popular service categories</h2>
-          <Link to="/services" className="text-sm font-bold text-primary">View all →</Link>
+        <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3 sm:mb-6">
+          <h2 className="min-w-0 text-xl font-extrabold sm:text-2xl md:text-3xl">Popular service categories</h2>
+          <Link to="/services" className="shrink-0 py-3 text-sm font-bold text-primary">View all →</Link>
         </div>
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
           {categories.slice(0, 12).map((c) => (
-            <Link key={c.slug} to="/services/$slug" params={{ slug: c.slug }} className="group flex flex-col items-center gap-2 rounded-2xl border bg-card p-4 text-center transition hover:-translate-y-0.5 hover:border-primary hover:shadow-card">
+            <Link key={c.slug} to="/services/$slug" params={{ slug: c.slug }} className="group flex min-w-0 flex-col items-center gap-2 rounded-lg border bg-card px-3 py-4 text-center transition hover:-translate-y-0.5 hover:border-primary hover:shadow-card">
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground"><c.icon className="h-6 w-6" /></span>
-              <span className="text-sm font-bold leading-tight">{c.name}</span>
+              <span className="min-h-10 w-full break-words text-sm font-bold leading-5">{c.name}</span>
               <span className="text-xs text-muted-foreground">{countFor(c.slug)} businesses</span>
             </Link>
           ))}
@@ -75,9 +75,9 @@ function Index() {
             const c = categories.find((x) => x.slug === s);
             if (!c) return null;
             return (
-              <Link key={s} to="/services/$slug" params={{ slug: s }} className="flex items-center justify-between rounded-2xl border bg-card p-5 hover:border-primary">
-                <div><p className="font-bold">{c.name} in Ahilyanagar</p><p className="text-sm text-muted-foreground">{countFor(s)} trusted providers</p></div>
-                <c.icon className="h-8 w-8 text-brand-orange" />
+              <Link key={s} to="/services/$slug" params={{ slug: s }} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border bg-card p-4 sm:p-5 hover:border-primary">
+                <div className="min-w-0"><p className="font-bold">{c.name} in Ahilyanagar</p><p className="text-sm text-muted-foreground">{countFor(s)} trusted providers</p></div>
+                <c.icon className="h-8 w-8 shrink-0 text-brand-orange" />
               </Link>
             );
           })}
@@ -90,8 +90,8 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-14">
-        <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-accent-gradient p-8 text-primary-foreground md:flex-row md:items-center">
-          <div><p className="flex items-center gap-2 text-2xl font-extrabold"><Zap className="h-6 w-6" />Own a business in Ahilyanagar?</p>
+        <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-accent-gradient p-5 text-primary-foreground sm:p-8 md:flex-row md:items-center">
+          <div className="min-w-0"><p className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 text-xl font-extrabold sm:text-2xl"><Zap className="h-6 w-6 shrink-0" />Own a business in Ahilyanagar?</p>
             <p className="mt-1 text-primary-foreground/90">Get listed free and start receiving customer calls and enquiries.</p></div>
           <Link to="/list-your-business" className="rounded-xl bg-card px-6 py-3 font-bold text-primary">List your business</Link>
         </div>

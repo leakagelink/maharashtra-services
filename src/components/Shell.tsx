@@ -20,9 +20,9 @@ const nav = [
 
 export function Shell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen pb-20 md:pb-0">
-      <header className="sticky top-0 z-40 border-b bg-card/95 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
+    <div className="app-shell min-h-dvh">
+      <header className="app-header sticky top-0 z-40 border-b bg-card/95 backdrop-blur">
+        <div className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 md:flex md:justify-between md:gap-4">
           <Logo />
           <nav className="hidden items-center gap-1 md:flex">
             {nav.map((n) => (
@@ -31,13 +31,13 @@ export function Shell({ children }: { children: ReactNode }) {
                 activeProps={{ className: "text-primary" }}>{n.label}</Link>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <Link to="/search" className="hidden rounded-lg p-2 text-muted-foreground hover:bg-muted md:block" aria-label="Search"><Search className="h-5 w-5" /></Link>
-            <Link to="/list-your-business" className="rounded-xl bg-accent-gradient px-4 py-2 text-sm font-bold text-primary-foreground">List Your Business</Link>
+            <Link to="/list-your-business" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-accent-gradient px-3 py-2 text-xs font-bold text-primary-foreground sm:px-4 sm:text-sm"><Store className="h-4 w-4 shrink-0" /><span>List Your Business</span></Link>
           </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="min-w-0">{children}</main>
       <footer className="mt-16 border-t bg-card">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-4">
           <div className="space-y-3"><Logo /><p className="text-sm text-muted-foreground">Find Local Services. Call. Connect. Trusted professionals across Ahilyanagar (Ahmednagar), Maharashtra.</p></div>
@@ -51,7 +51,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </div>
         <p className="border-t py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} QuickDial · Ahilyanagar</p>
       </footer>
-      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card md:hidden">
+      <nav aria-label="Mobile navigation" className="app-bottom-nav fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card md:hidden">
         {[
           { to: "/", icon: Home, label: "Home" },
           { to: "/services", icon: LayoutGrid, label: "Categories" },
@@ -60,7 +60,7 @@ export function Shell({ children }: { children: ReactNode }) {
           { to: "/list-your-business", icon: Store, label: "List" },
         ].map((n) => (
           <Link key={n.to} to={n.to} activeOptions={{ exact: n.to === "/" }}
-            className="flex flex-col items-center gap-1 py-2 text-[11px] font-semibold text-muted-foreground"
+            className="flex min-h-14 min-w-0 flex-col items-center justify-center gap-1 py-2 text-[11px] font-semibold text-muted-foreground"
             activeProps={{ className: "text-primary" }}>
             <n.icon className="h-5 w-5" />{n.label}
           </Link>

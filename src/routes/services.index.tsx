@@ -13,14 +13,14 @@ export const Route = createFileRoute("/services/")({
     ],
   }),
   component: () => (
-    <div className="mx-auto max-w-7xl px-4 py-10">
-      <h1 className="text-3xl font-extrabold">All services</h1>
+    <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:py-10">
+      <h1 className="text-2xl font-extrabold sm:text-3xl">All services</h1>
       <p className="mt-1 text-muted-foreground">Pick a category to see local providers in Ahilyanagar.</p>
-      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:grid-cols-4">
         {categories.map((c) => (
-          <Link key={c.slug} to="/services/$slug" params={{ slug: c.slug }} className="flex items-center gap-3 rounded-2xl border bg-card p-4 hover:border-primary hover:shadow-card">
+          <Link key={c.slug} to="/services/$slug" params={{ slug: c.slug }} className="flex min-w-0 flex-col items-center gap-3 rounded-lg border bg-card px-3 py-4 text-center hover:border-primary hover:shadow-card sm:flex-row sm:p-4 sm:text-left">
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-secondary text-primary"><c.icon className="h-5 w-5" /></span>
-            <span><span className="block text-sm font-bold">{c.name}</span><span className="text-xs text-muted-foreground">{countFor(c.slug)} businesses</span></span>
+            <span className="min-w-0 w-full sm:w-auto"><span className="block min-h-10 break-words text-sm font-bold leading-5 sm:min-h-0">{c.name}</span><span className="text-xs text-muted-foreground">{countFor(c.slug)} businesses</span></span>
           </Link>
         ))}
       </div>

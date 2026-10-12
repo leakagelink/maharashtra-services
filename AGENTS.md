@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep shared logo asset references and social-share metadata in `src/lib/brand.ts`; every content route includes the shared metadata to keep branding consistent without global image-tag inheritance.
+- Keep mobile safe-area insets in shared shell CSS and use shrinkable grid tracks for category tiles and mixed text/control rows, so the Android web view and narrow phones remain usable without horizontal overflow.

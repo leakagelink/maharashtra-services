@@ -25,10 +25,10 @@ export function BusinessCard({ b }: { b: Business }) {
         </div>
         <p className="mt-1 text-sm text-muted-foreground">{c.name} · {b.years} yrs experience · from ₹{b.priceFrom}{b.homeVisit && " · Home visit"}</p>
       </div>
-      <div className="flex gap-2 sm:flex-col sm:justify-center">
-        <a href={`tel:+91${b.phone}`} className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground"><Phone className="h-4 w-4" />Call</a>
-        {b.whatsapp && <a href={waLink(b)} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-success px-4 py-2.5 text-sm font-bold text-success"><MessageCircle className="h-4 w-4" />WhatsApp</a>}
-        <Link to="/business/$slug" params={{ slug: b.slug }} hash="enquire" className="flex flex-1 items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-bold">Enquire</Link>
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-col sm:justify-center">
+        <a href={`tel:+91${b.phone}`} className="flex min-h-11 min-w-0 items-center justify-center gap-2 rounded-xl bg-primary px-3 py-2.5 text-sm font-bold text-primary-foreground"><Phone className="h-4 w-4 shrink-0" />Call</a>
+        {b.whatsapp && <a href={waLink(b)} target="_blank" rel="noreferrer" className="flex min-h-11 min-w-0 items-center justify-center gap-2 rounded-xl border border-success px-3 py-2.5 text-sm font-bold text-success"><MessageCircle className="h-4 w-4 shrink-0" />WhatsApp</a>}
+        <Link to="/business/$slug" params={{ slug: b.slug }} hash="enquire" className={`flex min-h-11 items-center justify-center rounded-xl border px-3 py-2.5 text-sm font-bold ${b.whatsapp ? "col-span-2" : ""}`}>Enquire</Link>
       </div>
     </div>
   );
