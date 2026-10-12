@@ -57,11 +57,11 @@ function AdminPage() {
       name: draft.name.trim(), slug: slugify(draft.slug || draft.name), icon: draft.icon,
       keywords: draft.keywords.split(",").map((k) => k.trim()).filter(Boolean), sort_order: Number(draft.sort_order) || 100,
     };
-    if (!payload.name || !payload.slug) return toast.error("Name zaroori hai");
+    if (!payload.name || !payload.slug) { toast.error("Name zaroori hai"); return; }
     const { error } = draft.id
       ? await supabase.from("categories").update(payload).eq("id", draft.id)
       : await supabase.from("categories").insert(payload);
-    if (error) return toast.error(error.code === "23505" ? "Ye slug pehle se hai" : error.message);
+    if (error) { toast.error(error.code === "23505" ? "Ye slug pehle se hai" : error.message); return; }
     toast.success(draft.id ? "Category updated" : "Category added");
     setDraft(null);
     refresh();
@@ -70,7 +70,7 @@ function AdminPage() {
   const remove = async (r: Row) => {
     if (!confirm(`"${r.name}" delete karein?`)) return;
     const { error } = await supabase.from("categories").delete().eq("id", r.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Category deleted");
     refresh();
   };
