@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Home, LayoutGrid, Search, MessageSquare, Store } from "lucide-react";
+import { Home, LayoutGrid, MessageSquare, Phone, Search, Store } from "lucide-react";
 import type { ReactNode } from "react";
-import { brandLogoUrl } from "@/lib/brand";
+import { brandLogoUrl, customerCare } from "@/lib/brand";
+
 
 export function Logo() {
   return (
