@@ -137,3 +137,24 @@ export function suggestions(q: string) {
   if (first) areas.slice(0, 2).forEach((a) => out.add(`${first} in ${a}`));
   return [...out].slice(0, 7);
 }
+
+export type BusinessRow = {
+  slug: string; name: string; category: string; area: string; phone: string; rating: number; reviews: number;
+  years: number; verified: boolean; featured: boolean; open_now: boolean; home_visit: boolean; whatsapp: boolean;
+  distance_km: number; price_from: number; services: string[]; hours: string; about: string;
+};
+export const rowToBusiness = (r: BusinessRow): Business => ({
+  slug: r.slug, name: r.name, category: r.category, area: r.area, phone: r.phone, rating: Number(r.rating),
+  reviews: r.reviews, years: r.years, verified: r.verified, featured: r.featured, openNow: r.open_now,
+  homeVisit: r.home_visit, whatsapp: r.whatsapp, distanceKm: Number(r.distance_km), priceFrom: r.price_from,
+  services: r.services ?? [], hours: r.hours, about: r.about,
+});
+/** Replace live business list (in place) with rows managed from the admin panel. */
+export function setBusinessList(rows: BusinessRow[] | null | undefined) {
+  if (!rows) return;
+  businesses.splice(0, businesses.length, ...rows.map(rowToBusiness));
+}
+export function setAreaList(rows: string[] | null | undefined) {
+  if (!rows || rows.length === 0) return;
+  areas.splice(0, areas.length, ...rows);
+}
