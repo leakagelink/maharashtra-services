@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Home, LayoutGrid, MessageSquare, Phone, Search, Store } from "lucide-react";
 import type { ReactNode } from "react";
-import { brandLogoUrl, customerCare } from "@/lib/brand";
+import { brandLogoUrl, customerCare, siteSettings } from "@/lib/brand";
 
 
 export function Logo() {
@@ -23,6 +23,9 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell min-h-dvh">
       <header className="app-header sticky top-0 z-40 border-b bg-card/95 backdrop-blur">
+        {siteSettings["announcement"]?.trim() && (
+          <p className="bg-primary px-4 py-1.5 text-center text-xs font-bold text-primary-foreground">{siteSettings["announcement"]}</p>
+        )}
         <div className="border-b bg-secondary/60">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-1.5 text-xs font-semibold">
             <p className="min-w-0 text-muted-foreground">Need help finding the right professional?</p>
