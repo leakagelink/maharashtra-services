@@ -14,6 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
+      areas: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      businesses: {
+        Row: {
+          about: string
+          area: string
+          category: string
+          created_at: string
+          distance_km: number
+          featured: boolean
+          home_visit: boolean
+          hours: string
+          id: string
+          name: string
+          open_now: boolean
+          phone: string
+          price_from: number
+          rating: number
+          reviews: number
+          services: string[]
+          slug: string
+          verified: boolean
+          whatsapp: boolean
+          years: number
+        }
+        Insert: {
+          about?: string
+          area: string
+          category: string
+          created_at?: string
+          distance_km?: number
+          featured?: boolean
+          home_visit?: boolean
+          hours?: string
+          id?: string
+          name: string
+          open_now?: boolean
+          phone?: string
+          price_from?: number
+          rating?: number
+          reviews?: number
+          services?: string[]
+          slug: string
+          verified?: boolean
+          whatsapp?: boolean
+          years?: number
+        }
+        Update: {
+          about?: string
+          area?: string
+          category?: string
+          created_at?: string
+          distance_km?: number
+          featured?: boolean
+          home_visit?: boolean
+          hours?: string
+          id?: string
+          name?: string
+          open_now?: boolean
+          phone?: string
+          price_from?: number
+          rating?: number
+          reviews?: number
+          services?: string[]
+          slug?: string
+          verified?: boolean
+          whatsapp?: boolean
+          years?: number
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string

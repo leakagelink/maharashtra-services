@@ -14,8 +14,8 @@ import appCss from "../styles.css?url";
 import { Shell } from "../components/Shell";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "../components/ui/sonner";
-import { fetchCategories } from "../lib/categories.functions";
-import { setCategoryList } from "../lib/data";
+import { fetchSiteData } from "../lib/categories.functions";
+import { setAreaList, setBusinessList, setCategoryList } from "../lib/data";
 import { supabase } from "../integrations/supabase/client";
 
 function NotFoundComponent() {
@@ -100,9 +100,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
   }),
   loader: async () => {
-    const rows = await fetchCategories().catch(() => null);
-    setCategoryList(rows);
-    return { categories: rows };
+    const site = await fetchSiteData().catch(() => null);
+    setCategoryList(site?.categories);
+    setBusinessList(site?.businesses);
+    setAreaList(site?.areas);
+    return { site };
   },
   staleTime: 30_000,
   shellComponent: RootShell,
@@ -127,8 +129,10 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { categories } = Route.useLoaderData();
-  setCategoryList(categories);
+  const { site } = Route.useLoaderData();
+  setCategoryList(site?.categories);
+  setBusinessList(site?.businesses);
+  setAreaList(site?.areas);
   const router = useRouter();
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {
