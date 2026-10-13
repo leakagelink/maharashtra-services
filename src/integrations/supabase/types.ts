@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          action: string
+          created_at: string
+          entity: string
+          id: string
+          label: string
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          entity: string
+          id?: string
+          label?: string
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          entity?: string
+          id?: string
+          label?: string
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       areas: {
         Row: {
           created_at: string
@@ -32,6 +62,42 @@ export type Database = {
           id?: string
           name?: string
           sort_order?: number
+        }
+        Relationships: []
+      }
+      business_requests: {
+        Row: {
+          area: string
+          business_name: string
+          category: string
+          created_at: string
+          id: string
+          message: string
+          owner_name: string
+          phone: string
+          status: string
+        }
+        Insert: {
+          area?: string
+          business_name: string
+          category?: string
+          created_at?: string
+          id?: string
+          message?: string
+          owner_name: string
+          phone: string
+          status?: string
+        }
+        Update: {
+          area?: string
+          business_name?: string
+          category?: string
+          created_at?: string
+          id?: string
+          message?: string
+          owner_name?: string
+          phone?: string
+          status?: string
         }
         Relationships: []
       }
@@ -136,6 +202,7 @@ export type Database = {
       }
       enquiries: {
         Row: {
+          admin_note: string
           area: string | null
           business_name: string
           business_slug: string
@@ -145,8 +212,10 @@ export type Database = {
           message: string | null
           name: string
           phone: string
+          status: string
         }
         Insert: {
+          admin_note?: string
           area?: string | null
           business_name: string
           business_slug: string
@@ -156,8 +225,10 @@ export type Database = {
           message?: string | null
           name: string
           phone: string
+          status?: string
         }
         Update: {
+          admin_note?: string
           area?: string | null
           business_name?: string
           business_slug?: string
@@ -167,6 +238,25 @@ export type Database = {
           message?: string | null
           name?: string
           phone?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
         }
         Relationships: []
       }
