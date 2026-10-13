@@ -15,6 +15,7 @@ import { Shell } from "../components/Shell";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "../components/ui/sonner";
 import { fetchSiteData } from "../lib/categories.functions";
+import { setSiteSettings } from "../lib/brand";
 import { setAreaList, setBusinessList, setCategoryList } from "../lib/data";
 import { supabase } from "../integrations/supabase/client";
 
@@ -104,6 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     setCategoryList(site?.categories);
     setBusinessList(site?.businesses);
     setAreaList(site?.areas);
+    setSiteSettings(site?.settings);
     return { site };
   },
   staleTime: 30_000,
@@ -133,6 +135,7 @@ function RootComponent() {
   setCategoryList(site?.categories);
   setBusinessList(site?.businesses);
   setAreaList(site?.areas);
+    setSiteSettings(site?.settings);
   const router = useRouter();
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event) => {

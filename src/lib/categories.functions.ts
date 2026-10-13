@@ -26,15 +26,17 @@ export const fetchCategories = createServerFn({ method: "GET" }).handler(async (
 
 export const fetchSiteData = createServerFn({ method: "GET" }).handler(async () => {
   const sb = publicClient();
-  const [c, b, a] = await Promise.all([
+  const [c, b, a, s] = await Promise.all([
     sb.from("categories").select("slug,name,icon,keywords").order("sort_order").order("name"),
     sb.from("businesses").select("*").order("featured", { ascending: false }).order("name"),
     sb.from("areas").select("name").order("sort_order").order("name"),
+    sb.from("site_settings").select("key,value"),
   ]);
   if (c.error || b.error || a.error) throw new Error((c.error ?? b.error ?? a.error)!.message);
   return {
     categories: (c.data ?? []) as CategoryRow[],
     businesses: (b.data ?? []) as unknown as BusinessRow[],
     areas: (a.data ?? []).map((r) => r.name),
+    settings: s.error ? [] : (s.data ?? []),
   };
 });

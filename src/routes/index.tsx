@@ -3,7 +3,7 @@ import { BadgeCheck, Phone, ShieldCheck, Zap } from "lucide-react";
 import { SearchBar } from "@/components/SearchBar";
 import { BusinessCard } from "@/components/BusinessCard";
 import { businesses, categories, countFor } from "@/lib/data";
-import { brandShareMeta } from "@/lib/brand";
+import { brandShareMeta, siteSettings } from "@/lib/brand";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -18,9 +18,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const popular = ["Electrician", "Plumber", "AC Service", "Home Cleaning", "Packers & Movers", "Painter", "Carpenter", "Pest Control"];
 
 function Index() {
+  const popular = (siteSettings["popular_searches"] ?? "").split(",").map((x) => x.trim()).filter(Boolean);
   const featured = businesses.filter((b) => b.featured && b.verified).slice(0, 6);
   return (
     <>
@@ -30,10 +30,10 @@ function Index() {
             <span className="h-2 w-2 rounded-full bg-brand-orange" />Ahilyanagar · Maharashtra
           </p>
           <h1 className="max-w-3xl break-words text-3xl font-extrabold leading-tight sm:text-4xl md:text-6xl">
-            Find trusted local services in <span className="text-brand-orange">Ahilyanagar</span>
+            {siteSettings["hero_title"]}
           </h1>
           <p className="mt-3 max-w-2xl text-base text-primary-foreground/80 sm:mt-4 sm:text-lg">
-            Electricians, plumbers, AC technicians, cleaners, packers & movers and more — find local professionals near you.
+            {siteSettings["hero_subtitle"]}
           </p>
           <div className="mt-5 max-w-4xl text-foreground sm:mt-8"><SearchBar /></div>
           <div className="mt-5 flex flex-wrap gap-2">

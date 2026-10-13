@@ -22,6 +22,13 @@
       "when": 1791889992044,
       "tag": "0002_admin_manage_all",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791890650298,
+      "tag": "0003_admin_extras",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BarChart3, MessageSquare, PhoneIncoming, Star } from "lucide-react";
 import { brandShareMeta, customerCare } from "@/lib/brand";
+import { ListingRequestForm } from "@/components/ListingRequestForm";
 
 export const Route = createFileRoute("/list-your-business")({
   head: () => ({
@@ -22,8 +23,7 @@ export const Route = createFileRoute("/list-your-business")({
         ))}
       </div>
       <div className="mt-10 rounded-2xl border bg-secondary p-6">
-        <p className="font-bold">Business sign-up is coming next.</p>
-        <p className="mt-1 text-sm text-muted-foreground">Business accounts, dashboards and the admin panel are the next phase of QuickDial.</p>
+        <ListingRequestForm />
         <p className="mt-4 text-sm">Need help or want your business added sooner? Call customer care <a href={`tel:${customerCare.tel}`} className="font-bold text-primary">{customerCare.display}</a> or <a href={customerCare.whatsapp} target="_blank" rel="noopener noreferrer" className="font-bold text-success">chat on WhatsApp</a>.</p>
         <Link to="/" className="mt-4 inline-block rounded-xl bg-primary px-5 py-2.5 font-bold text-primary-foreground">Back to home</Link>
       </div>
