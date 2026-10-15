@@ -28,7 +28,8 @@ export function setSiteSettings(rows: { key: string; value: string }[] | null | 
   if (wa && digits(wa).length >= 11) customerCare.whatsapp = `https://wa.me/${digits(wa)}`;
 }
 
-const shareImageUrl = `https://id-preview--d3806124-682c-4cdc-9c3c-859bb3d7960a.lovable.app${shareAsset.url}`;
+const siteOrigin = "https://maharashtra-services.lovable.app";
+const shareImageUrl = `${siteOrigin}${shareAsset.url}`;
 
 export const brandShareMeta = [
   { property: "og:type", content: "website" },
