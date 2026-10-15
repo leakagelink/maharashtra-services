@@ -41,7 +41,7 @@ export function SettingsAdmin({ onChanged }: { onChanged: () => void }) {
   return (
     <div className="grid gap-4 rounded-2xl border bg-card p-4 md:grid-cols-2">
       {fields.map((f) => (
-        <Field key={f.key} label={f.label} wide={f.long}>
+        <Field key={f.key} label={f.label} wide={!!f.long}>
           {f.long
             ? <textarea className="mt-1 w-full rounded-lg border bg-background p-3 font-normal" rows={2} value={v[f.key] ?? ""} onChange={(e) => setV({ ...v, [f.key]: e.target.value })} />
             : <input className={inputCls} value={v[f.key] ?? ""} onChange={(e) => setV({ ...v, [f.key]: e.target.value })} />}

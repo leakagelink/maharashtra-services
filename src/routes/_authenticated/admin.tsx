@@ -8,6 +8,9 @@ import { BusinessesAdmin } from "@/components/admin/BusinessesAdmin";
 import { AreasAdmin } from "@/components/admin/AreasAdmin";
 import { EnquiriesAdmin } from "@/components/admin/EnquiriesAdmin";
 import { UsersAdmin } from "@/components/admin/UsersAdmin";
+import { SettingsAdmin } from "@/components/admin/SettingsAdmin";
+import { RequestsAdmin } from "@/components/admin/RequestsAdmin";
+import { ActivityAdmin } from "@/components/admin/ActivityAdmin";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -23,7 +26,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
 });
 
-const tabs = ["Dashboard", "Businesses", "Categories", "Areas", "Enquiries", "Users"] as const;
+const tabs = ["Dashboard", "Businesses", "Categories", "Areas", "Enquiries", "Requests", "Users", "Settings", "Activity"] as const;
 type Tab = (typeof tabs)[number];
 
 function AdminPage() {
@@ -43,9 +46,10 @@ function AdminPage() {
     queryKey: ["admin-stats", tab],
     enabled: !!isAdmin.data,
     queryFn: async () => {
-      const c = (t: "businesses" | "categories" | "areas" | "enquiries") => supabase.from(t).select("*", { count: "exact", head: true }).then((r) => r.count ?? 0);
-      const [b, ca, a, e] = await Promise.all([c("businesses"), c("categories"), c("areas"), c("enquiries")]);
-      return { Businesses: b, Categories: ca, Areas: a, Enquiries: e };
+      const c = (t: "businesses" | "categories" | "areas" | "enquiries" | "business_requests") => supabase.from(t).select("*", { count: "exact", head: true }).then((r) => r.count ?? 0);
+      const [b, ca, a, e, r] = await Promise.all([c("businesses"), c("categories"), c("areas"), c("enquiries"), c("business_requests")]);
+      const n = await supabase.from("enquiries").select("*", { count: "exact", head: true }).eq("status", "new").then((x) => x.count ?? 0);
+      return { Businesses: b, Categories: ca, Areas: a, Enquiries: e, "New enquiries": n, Requests: r };
     },
   });
 
@@ -73,7 +77,7 @@ function AdminPage() {
         {tab === "Dashboard" && (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {Object.entries(stats.data ?? {}).map(([k, v]) => (
-              <button key={k} onClick={() => setTab(k as Tab)} className="rounded-2xl border bg-card p-5 text-left hover:border-primary">
+              <button key={k} onClick={() => setTab((k === "New enquiries" ? "Enquiries" : k) as Tab)} className="rounded-2xl border bg-card p-5 text-left hover:border-primary">
                 <p className="text-3xl font-extrabold">{v}</p><p className="text-sm text-muted-foreground">{k}</p>
               </button>
             ))}
@@ -83,7 +87,10 @@ function AdminPage() {
         {tab === "Categories" && <CategoriesAdmin onChanged={onChanged} />}
         {tab === "Areas" && <AreasAdmin onChanged={onChanged} />}
         {tab === "Enquiries" && <EnquiriesAdmin />}
+        {tab === "Requests" && <RequestsAdmin />}
         {tab === "Users" && <UsersAdmin />}
+        {tab === "Settings" && <SettingsAdmin onChanged={onChanged} />}
+        {tab === "Activity" && <ActivityAdmin />}
       </div>
     </div>
   );
