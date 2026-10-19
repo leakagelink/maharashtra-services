@@ -70,7 +70,8 @@ export function Shell({ children }: { children: ReactNode }) {
             {["electrician", "plumber", "ac-service", "packers-movers"].map((s) => (
               <li key={s}><Link to="/services/$slug" params={{ slug: s }} className="capitalize">{s.replace("-", " ")} in Ahilyanagar</Link></li>))}</ul></div>
         </div>
-        <p className="border-t py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} QuickDial · Ahilyanagar · Customer care <a href={`tel:${customerCare.tel}`} className="font-bold text-primary">{customerCare.display}</a></p>
+        <p className="border-t py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} QuickDial · Ahilyanagar · Customer care <a href={`tel:${customerCare.tel}`} className="font-bold text-primary">{customerCare.display}</a>
+          <span className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1"><Link to="/privacy-policy" className="inline-block py-2 font-semibold">Privacy Policy</Link><Link to="/terms-and-conditions" className="inline-block py-2 font-semibold">Terms</Link><Link to="/delete-account" className="inline-block py-2 font-semibold">Delete your data</Link></span></p>
       </footer>
       <nav aria-label="Mobile navigation" className="app-bottom-nav fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card md:hidden">
         {[
