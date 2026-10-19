@@ -86,7 +86,9 @@ function Index() {
 
       <section className="mx-auto max-w-7xl px-4 pt-14">
         <h2 className="mb-6 text-2xl font-extrabold md:text-3xl">Featured businesses</h2>
-        <div className="grid gap-3 lg:grid-cols-2">{featured.map((b) => <BusinessCard key={b.slug} b={b} />)}</div>
+        {featured.length === 0
+          ? <p className="rounded-2xl border bg-card p-8 text-center text-muted-foreground">Businesses are being added. Own a business? <a href="/list-your-business" className="font-bold text-primary">List it free</a>.</p>
+          : <div className="grid gap-3 lg:grid-cols-2">{featured.map((b) => <BusinessCard key={b.slug} b={b} />)}</div>}
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-14">
