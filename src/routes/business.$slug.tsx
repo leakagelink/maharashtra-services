@@ -34,8 +34,7 @@ function BusinessPage() {
               <div>
                 <h1 className="text-2xl font-extrabold md:text-3xl">{b.name}</h1>
                 <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-success px-1.5 py-0.5 text-xs font-bold text-success-foreground">{b.rating}<Star className="h-3 w-3 fill-current" /></span>
-                  <span>{b.reviews} reviews</span>
+                  {b.reviews > 0 && <><span className="inline-flex items-center gap-1 rounded-md bg-success px-1.5 py-0.5 text-xs font-bold text-success-foreground">{b.rating}<Star className="h-3 w-3 fill-current" /></span><span>{b.reviews} reviews</span></>}
                   {b.verified && <span className="inline-flex items-center gap-1 font-bold text-primary"><BadgeCheck className="h-4 w-4" />Verified</span>}
                 </div>
                 <p className="mt-2 flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-4 w-4" />{b.area}, Ahilyanagar · {b.distanceKm} km</p>

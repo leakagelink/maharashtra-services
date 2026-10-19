@@ -54,46 +54,8 @@ export type Business = {
   hours: string; about: string;
 };
 
-const prefixes = ["Shri Swami Samarth", "Sai", "Om", "Ganesh", "Jai Malhar", "Royal", "Shivam", "Prime", "Siddhi", "Nagar"];
-const suffixes: Record<string, string> = {
-  electrician: "Electricals", plumber: "Plumbing Works", "home-cleaning": "Cleaning Services", "ac-service": "Cooling Solutions",
-  "packers-movers": "Packers & Movers", painter: "Painting Contractors", carpenter: "Furniture Works", "pest-control": "Pest Control",
-  "appliance-repair": "Appliance Care", "ro-service": "Aqua RO Care", "cctv-security": "Security Systems", waterproofing: "Waterproofing",
-  "home-renovation": "Constructions", "beauty-at-home": "Beauty Studio", "interior-design": "Interiors", "solar-services": "Solar Energy",
-  "computer-repair": "Computers", "mobile-repair": "Mobile Point", "car-bike-services": "Auto Garage", "event-wedding": "Decorators",
-  photography: "Studio", "tuition-classes": "Academy", laundry: "Dry Cleaners",
-};
-
-function rand(seed: number) {
-  const x = Math.sin(seed * 9301 + 49297) * 233280;
-  return x - Math.floor(x);
-}
-
-export const businesses: Business[] = categories.flatMap((c, ci) =>
-  [0, 1, 2, 3].map((k) => {
-    const s = ci * 10 + k + 1;
-    const name = `${prefixes[(ci + k * 3) % prefixes.length]} ${suffixes[c.slug]}`;
-    const area = areas[(ci * 3 + k * 5) % areas.length]!;
-    return {
-      slug: `${name}-${area}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-      name, category: c.slug, area,
-      rating: Math.round((3.8 + rand(s) * 1.2) * 10) / 10,
-      reviews: Math.floor(12 + rand(s + 1) * 480),
-      years: Math.floor(2 + rand(s + 2) * 18),
-      verified: rand(s + 3) > 0.3,
-      featured: k === 0,
-      openNow: rand(s + 4) > 0.25,
-      homeVisit: rand(s + 5) > 0.3,
-      whatsapp: rand(s + 6) > 0.15,
-      phone: `98${String(Math.floor(10000000 + rand(s + 7) * 89999999))}`,
-      distanceKm: Math.round((0.5 + rand(s + 8) * 9) * 10) / 10,
-      priceFrom: [149, 199, 249, 299, 399, 499][Math.floor(rand(s + 9) * 6)]!,
-      services: [c.name, ...c.keywords.map((w) => w[0]!.toUpperCase() + w.slice(1))],
-      hours: "9:00 AM – 8:00 PM",
-      about: `${name} is a trusted ${c.name.toLowerCase()} provider based in ${area}, Ahilyanagar, serving homes and businesses across the city.`,
-    };
-  }),
-);
+/** Real listings only — loaded from the database (admin panel). Never generate placeholder businesses. */
+export const businesses: Business[] = [];
 
 /** Replace the live category list (in place) with rows managed from the admin panel. */
 export function setCategoryList(rows: CategoryRow[] | null | undefined) {
