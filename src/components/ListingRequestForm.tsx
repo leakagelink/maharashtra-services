@@ -47,6 +47,7 @@ export function ListingRequestForm() {
         <select className={cls} value={f.area} onChange={set("area")}><option value="">Select</option>{areas.map((a) => <option key={a} value={a}>{a}</option>)}</select>
       </label>
       <label className="text-sm font-semibold sm:col-span-2">Message (optional)<textarea className="mt-1 w-full rounded-lg border bg-background p-3 text-base" rows={3} value={f.message} onChange={set("message")} maxLength={1000} /></label>
+      <p className="text-xs text-muted-foreground sm:col-span-2">Submit karke aap hamari <a href="/privacy-policy" className="font-semibold text-primary">Privacy Policy</a> se sahmat hain.</p>
       <button disabled={busy} className="h-11 rounded-xl bg-primary px-5 font-bold text-primary-foreground disabled:opacity-60 sm:col-span-2">{busy ? "Bhej rahe hain…" : "Submit request"}</button>
     </form>
   );

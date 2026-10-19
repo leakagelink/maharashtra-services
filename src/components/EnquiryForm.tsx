@@ -52,6 +52,7 @@ export function EnquiryForm({ b }: { b: Business }) {
       <textarea className="min-h-24 w-full rounded-xl border bg-background p-3 text-sm outline-none focus:border-primary" placeholder="Describe what you need (optional)"
         maxLength={1000} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
       {err && <p className="text-sm font-semibold text-destructive">{err}</p>}
+      <p className="text-xs text-muted-foreground">Your details go to this business and QuickDial. See our <a href="/privacy-policy" className="font-semibold text-primary">Privacy Policy</a>.</p>
       <button disabled={status === "sending"} className="h-12 w-full rounded-xl bg-primary font-bold text-primary-foreground disabled:opacity-60">
         {status === "sending" ? "Sending…" : "Send request"}
       </button>

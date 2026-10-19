@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: "QuickDial",
   webDir: "capacitor-www",
   server: {
-    url: "https://maharashtra-services.lovable.app",
+    url: "https://quickdialan.com",
     cleartext: false,
   },
 };

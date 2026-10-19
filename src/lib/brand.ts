@@ -28,7 +28,7 @@ export function setSiteSettings(rows: { key: string; value: string }[] | null | 
   if (wa && digits(wa).length >= 11) customerCare.whatsapp = `https://wa.me/${digits(wa)}`;
 }
 
-const siteOrigin = "https://maharashtra-services.lovable.app";
+const siteOrigin = "https://quickdialan.com";
 const shareImageUrl = `${siteOrigin}${shareAsset.url}`;
 
 export const brandShareMeta = [
