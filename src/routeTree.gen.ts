@@ -14,8 +14,11 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AreasRouteImport } from './routes/areas'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BusinessesRouteImport } from './routes/businesses'
+import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as ListYourBusinessRouteImport } from './routes/list-your-business'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -45,14 +48,29 @@ const BusinessesRoute = BusinessesRouteImport.update({
   path: '/businesses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeleteAccountRoute = DeleteAccountRouteImport.update({
+  id: '/delete-account',
+  path: '/delete-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ListYourBusinessRoute = ListYourBusinessRouteImport.update({
   id: '/list-your-business',
   path: '/list-your-business',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -81,8 +99,11 @@ export interface FileRoutesByFullPath {
   '/areas': typeof AreasRoute
   '/auth': typeof AuthRoute
   '/businesses': typeof BusinessesRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/list-your-business': typeof ListYourBusinessRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -93,8 +114,11 @@ export interface FileRoutesByTo {
   '/areas': typeof AreasRoute
   '/auth': typeof AuthRoute
   '/businesses': typeof BusinessesRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/list-your-business': typeof ListYourBusinessRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -107,8 +131,11 @@ export interface FileRoutesById {
   '/areas': typeof AreasRoute
   '/auth': typeof AuthRoute
   '/businesses': typeof BusinessesRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/list-your-business': typeof ListYourBusinessRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -121,8 +148,11 @@ export interface FileRouteTypes {
     | '/areas'
     | '/auth'
     | '/businesses'
+    | '/delete-account'
     | '/list-your-business'
+    | '/privacy-policy'
     | '/search'
+    | '/terms-and-conditions'
     | '/admin'
     | '/business/$slug'
     | '/services/$slug'
@@ -133,8 +163,11 @@ export interface FileRouteTypes {
     | '/areas'
     | '/auth'
     | '/businesses'
+    | '/delete-account'
     | '/list-your-business'
+    | '/privacy-policy'
     | '/search'
+    | '/terms-and-conditions'
     | '/admin'
     | '/business/$slug'
     | '/services/$slug'
@@ -146,8 +179,11 @@ export interface FileRouteTypes {
     | '/areas'
     | '/auth'
     | '/businesses'
+    | '/delete-account'
     | '/list-your-business'
+    | '/privacy-policy'
     | '/search'
+    | '/terms-and-conditions'
     | '/_authenticated/admin'
     | '/business/$slug'
     | '/services/$slug'
@@ -160,8 +196,11 @@ export interface RootRouteChildren {
   AreasRoute: typeof AreasRoute
   AuthRoute: typeof AuthRoute
   BusinessesRoute: typeof BusinessesRoute
+  DeleteAccountRoute: typeof DeleteAccountRoute
   ListYourBusinessRoute: typeof ListYourBusinessRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SearchRoute: typeof SearchRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   BusinessSlugRoute: typeof BusinessSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -204,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delete-account': {
+      id: '/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof DeleteAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/list-your-business': {
       id: '/list-your-business'
       path: '/list-your-business'
@@ -211,11 +257,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListYourBusinessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -266,8 +326,11 @@ const rootRouteChildren: RootRouteChildren = {
   AreasRoute: AreasRoute,
   AuthRoute: AuthRoute,
   BusinessesRoute: BusinessesRoute,
+  DeleteAccountRoute: DeleteAccountRoute,
   ListYourBusinessRoute: ListYourBusinessRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   SearchRoute: SearchRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
   BusinessSlugRoute: BusinessSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,

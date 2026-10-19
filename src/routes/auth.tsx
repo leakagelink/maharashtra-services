@@ -45,9 +45,7 @@ function AuthPage() {
         <input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="h-11 w-full rounded-xl border bg-card px-3" />
         <button disabled={busy} className="h-11 w-full rounded-xl bg-primary font-bold text-primary-foreground disabled:opacity-60">{busy ? "Please wait…" : mode === "in" ? "Sign in" : "Sign up"}</button>
       </form>
-      <button onClick={() => setMode(mode === "in" ? "up" : "in")} className="mt-4 text-sm font-semibold text-primary">
-        {mode === "in" ? "New here? Create account" : "Already have an account? Sign in"}
-      </button>
+      <p className="mt-4 text-sm text-muted-foreground">Admin accounts are created by an existing administrator. <a href="/privacy-policy" className="font-semibold text-primary">Privacy Policy</a></p>
     </div>
   );
 }
