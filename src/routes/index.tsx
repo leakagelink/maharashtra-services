@@ -45,7 +45,7 @@ function Index() {
       </section>
 
       <section className="relative mx-auto mt-4 grid max-w-7xl grid-cols-1 gap-3 px-4 sm:-mt-8 sm:grid-cols-3">
-        {[{ i: BadgeCheck, t: "Verified businesses", d: "Profiles checked by our team" }, { i: Phone, t: "Direct contact", d: "Call or WhatsApp — no middlemen" }, { i: ShieldCheck, t: "Real reviews", d: "From customers in your city" }].map((x) => (
+        {[{ i: BadgeCheck, t: "Local businesses", d: "Listed across Ahilyanagar" }, { i: Phone, t: "Direct contact", d: "Call or WhatsApp — no middlemen" }, { i: ShieldCheck, t: "Free to use", d: "No fees for customers" }].map((x) => (
           <div key={x.t} className="flex items-center gap-3 rounded-2xl border bg-card p-4 shadow-card">
             <x.i className="h-8 w-8 shrink-0 text-brand-red" /><div className="min-w-0"><p className="font-bold">{x.t}</p><p className="text-sm text-muted-foreground">{x.d}</p></div>
           </div>

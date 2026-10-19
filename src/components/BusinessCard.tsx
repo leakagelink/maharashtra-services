@@ -18,8 +18,7 @@ export function BusinessCard({ b }: { b: Business }) {
           {b.featured && <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-accent-foreground">Featured</span>}
         </div>
         <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1 rounded-md bg-success px-1.5 py-0.5 text-xs font-bold text-success-foreground">{b.rating}<Star className="h-3 w-3 fill-current" /></span>
-          <span>{b.reviews} reviews</span>
+          {b.reviews > 0 && <><span className="inline-flex items-center gap-1 rounded-md bg-success px-1.5 py-0.5 text-xs font-bold text-success-foreground">{b.rating}<Star className="h-3 w-3 fill-current" /></span><span>{b.reviews} reviews</span></>}
           <span className="inline-flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{b.area} · {b.distanceKm} km</span>
           <span className={b.openNow ? "text-success font-semibold" : "text-brand-red font-semibold"}>{b.openNow ? "Open now" : "Closed"}</span>
         </div>
